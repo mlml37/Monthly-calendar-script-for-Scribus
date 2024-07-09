@@ -229,7 +229,7 @@ class ScMonthCalendar:
         scribus.createCharStyle(name=self.cStylHolidays, font=self.cFont,
             fontsize=(self.rowSize // 8), fillcolor="txtDate")
         scribus.createCharStyle(name=self.cStylDate, font=self.cFont,
-            fontsize=(self.rowSize // 2), fillcolor="txtDate")
+            fontsize=(self.rowSize // 4), fillcolor="txtDate")
         scribus.createCharStyle(name=self.cStylMini, font=self.cFont,
             fontsize=(self.rowSize // 8), fillcolor="txtDate")
         scribus.createParagraphStyle(name=self.pStyleMonthHeading, linespacingmode=0,
@@ -245,7 +245,7 @@ class ScMonthCalendar:
         scribus.createParagraphStyle(name=self.pStyleHolidays,  linespacingmode=0,
             linespacing=(self.rowSize//8),alignment=ALIGN_CENTERED,
             charstyle=self.cStylHolidays)
-        scribus.createParagraphStyle(name=self.pStyleDate, alignment=ALIGN_CENTERED,
+        scribus.createParagraphStyle(name=self.pStyleDate, alignment=ALIGN_RIGHT,
             charstyle=self.cStylDate)
         scribus.createParagraphStyle(name=self.pStyleMini,  linespacingmode=1,
             linespacing=(self.rowSize//8),alignment=ALIGN_CENTERED,
@@ -426,7 +426,8 @@ class ScMonthCalendar:
                     deselectAll()
                     selectObject(cel)
                     setParagraphStyle(self.pStyleDate, cel)
-                    setTextVerticalAlignment(ALIGNV_CENTERED, cel)
+                    setTextDistances(0, self.rowSize * 0.05, self.rowSize * 0.05, 0, cel)
+                    setTextVerticalAlignment(ALIGNV_TOP, cel)
                     weekend = False # day is  weekend day
                     if calendar.firstweekday() == 6:
                         x = 1
